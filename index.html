@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Financial Calculator</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<form id="form">
+		<div style="float: left; margin: 15px;">
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>Enter Per Diem Daily Rate</td>
+						<td>$<input min="0.00" id="input.PerDiemRate" type="number" value="0.00"></td>
+					</tr>
+					
+					<tr>
+						<td>Type of Traveling</td>
+						<td>
+							<select id="input.MealType">
+								<option value="1">First or Last Day</option>
+								<option value="2">Not First or Last Day</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td># of Meal(s)</td>
+						<td>
+							<select id="input.NumbMeals">
+								<option value="2">0</option>
+								<option value="4">1</option>
+								<option value="8">2</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Total Meal Amount</td>
+						<td>$<input class="results" disabled="disabled" id="output.TotalAmount" type="number"></td>
+					</tr>
+					<tr>
+						<td>Incidental Value</td>
+						<td>$<input id="input.IncValue" class="results" disabled="disabled" value="5.00" readonly="readonly" type="number"></td>
+					</tr>
+					<!-- <tr>
+						<td>Grand Total (M&IE)</td>
+						<td>$<input class="results" disabled="disabled" id="output.GrandTotalAmount" type="number"></td>
+					</tr> -->
+				</tbody>
+			</table>
+			<div align="center">
+				<button type="button" id="btn.submit">Get Rates</button> <button id="btn.reset" type="button">Reset</button>
+			</div>
+			<div id="Instructions">
+				<p>Fill out the Per Diem daily rate, the type of traveling you'll be attending, and # of meals.</p>
+				<p>Click the Get Rates button to populate the right side of the table.</p>
+				<p>Click the Reset button to reset the calculator to default values.</p>
+				<p>For a full breakdown, download this <a href="">PDF</a></p>
+			</div>
+
+		</div>
+	</form>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="js/calculator.js"></script>
+</body>
+</html>
