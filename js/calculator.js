@@ -1,7 +1,7 @@
 var PerDiemCalculator = {
 
-	oneNoMeal: 3,
-	twoNoMeal: 4,
+    oneNoMeal: 3,
+    twoNoMeal: 4,
     oneTenMeal: 5,
 	twoTenMeal: 9,
 	oneConfMeal: 6,
@@ -17,7 +17,7 @@ PerDiemCalculator.init = function() {
 	this.form['meals'] = $('#input\\.NumbMeals');
 	this.form['incidental'] = $('#input\\.IncValue');
 	this.form['total'] = $('#output\\.TotalAmount');
-	this.form['grandTotal'] = $('#output\\.GrandTotalAmount');
+	this.form['grand'] = $('#output\\.GrandTotalAmount');
 	this.form['submit'] = $('#btn\\.submit');
 	this.form['reset'] = $('#btn\\.reset');
 
@@ -35,7 +35,12 @@ PerDiemCalculator.init = function() {
 	this.form.total.on('update', function(e, amt) {
 		amount = parseFloat(amt).toFixed(2);
 		$(this).val(amount);
-	})
+	});
+    
+	this.form.grand.on('update',function(e,amou){
+		amounts = parseFloat(amou).toFixed(2);
+		$(this).val(amounts);
+	});
 
 };
 
@@ -45,37 +50,38 @@ PerDiemCalculator.calculate = function() {
 	var type = parseInt(this.form.type.val());
 	var meals = parseInt(this.form.meals.val());
 	var total = 0;
-	var grandTotal = 0;
+	var grand = 0;
 	var bitmask = type + meals;
 	rate = rate - parseFloat(this.form.incidental.val());
     
 	if((this.oneNoMeal & bitmask) === this.oneNoMeal) {
-		total = (rate * 0.75);
+		total = (rate) * 0.75;
 	}
 
 	if((this.twoNoMeal & bitmask) === this.twoNoMeal) {
-		total = rate;
+		total = rate; // + 5;
 	}
 
 	if((this.oneTenMeal & bitmask) === this.oneTenMeal) {
-		total = (rate * 0.75 * 0.75);
+		total = (rate * 0.75 * 0.75); // + 5;
 	}
 
 	if((this.twoTenMeal & bitmask) === this.twoTenMeal) {
-		total = (rate * 0.75 * 0.35);
+		total = (rate * 0.75 * 0.35); // + 5;
 	}
 
 	if((this.oneConfMeal & bitmask) === this.oneConfMeal) {
-		total = (rate * 0.75);
+		total = (rate * 0.75); // + 5;
 	}
 
 	if((this.twoConfMeal & bitmask) === this.twoConfMeal) {
-		total = (rate * 0.35);
+		total = (rate * 0.35); // + 5;
 	}
 
-	this.form.grandtotal = total + 5;
+	grand = total + 5;
 
 	this.form.total.trigger('update', [total]);
+	this.form.grand.trigger('update', [grand]);
 
 };
 
