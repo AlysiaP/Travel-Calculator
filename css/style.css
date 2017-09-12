@@ -28,7 +28,6 @@ input[type=number] {
 -moz-appearance: textfield;
 }
 .results {
-color: #ffffff;
 background: #0064b1; /* Old browsers */
 background: -moz-linear-gradient(top,  #0064b1 0%, #00457e 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  #0064b1 0%,#00457e 100%); /* Chrome10-25,Safari5.1-6 */
